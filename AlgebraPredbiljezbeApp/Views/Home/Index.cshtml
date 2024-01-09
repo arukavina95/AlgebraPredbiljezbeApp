@@ -1,0 +1,48 @@
+﻿@model IEnumerable<AlgebraPredbiljezbeApp.Data.Seminar>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Get))
+{
+    <label> Pretraga: </label> @Html.TextBox("naziv")
+    <input type="submit" value=" Pretraži ">
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Naziv)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Opis)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Datum)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td scope="row">
+                    <a asp-action="Odaberi" asp-route-id="@item.Id">Odaberi</a>
+                </td>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.Naziv)
+                </td>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.Opis)
+                </td>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.Datum)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
